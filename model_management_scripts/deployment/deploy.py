@@ -9,7 +9,7 @@ from typing import List
 app = FastAPI()
 
 # Load the model from MLflow
-logged_model = 'runs:/d5e915a1aaa14401ba63928c18f02625/best_model'
+logged_model = 'runs:/90c24f696af748cb84d07f750e1897fc/best_model'
 
 # Load the model at the start of the FastAPI app
 model = mlflow.sklearn.load_model(logged_model)
@@ -18,8 +18,8 @@ model = mlflow.sklearn.load_model(logged_model)
 class PredictionInput(BaseModel):
     Volume_Lag_1: float
     Daily_Return: float
-    30_day_avg_Adj_Close: float
-    30_day_volatility: float
+    A_30_day_avg_Adj_Close: float
+    A_30_day_volatility: float
     Year: int
     Month: int
     Day: int
@@ -33,7 +33,7 @@ class PredictionOutput(BaseModel):
 def predict(input_data: PredictionInput):
     # Convert the input data to the format expected by the model (as a numpy array)
     input_array = np.array([[input_data.Volume_Lag_1, input_data.Daily_Return,
-                             input_data.30_day_avg_Adj_Close, input_data.30_day_volatility,
+                             input_data.A_30_day_avg_Adj_Close, input_data.A_30_day_volatility,
                              input_data.Year, input_data.Month, input_data.Day]])
 
     # Make a prediction using the loaded model

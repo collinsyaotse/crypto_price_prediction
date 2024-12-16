@@ -57,8 +57,8 @@ def preprocess_data(df):
     df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
     df['Adj_Close_Lag_1'] = df['Adj Close'].shift(1)
     df['Volume_Lag_1'] = df['Volume'].shift(1)
-    df['30_day_avg_Adj_Close'] = df['Adj Close'].rolling(window=30).mean()
-    df['30_day_volatility'] = df['Adj Close'].rolling(window=30).std()
+    df['A_30_day_avg_Adj_Close'] = df['Adj Close'].rolling(window=30).mean()
+    df['A_30_day_volatility'] = df['Adj Close'].rolling(window=30).std()
     df['Daily_Return'] = df['Adj Close'].pct_change()
     df['Target'] = df['Adj Close'].shift(-1)
 
@@ -70,7 +70,7 @@ def preprocess_data(df):
     df['Day_of_Week'] = df['Date'].dt.weekday
     
 
-    df_cleaned = df[['Volume_Lag_1', "Daily_Return","30_day_avg_Adj_Close", "30_day_volatility", "Year", "Month", "Day", "Target"]]
+    df_cleaned = df[['Volume_Lag_1', "Daily_Return","A_30_day_avg_Adj_Close", "A_30_day_volatility", "Year", "Month", "Day", "Target"]]
     df_cleaned = df_cleaned.dropna()
     # Define split proportions (70% training, 15% validation, 15% test)
     train_size = 0.7

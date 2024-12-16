@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Quavooo/Documents/crypto_price_prediction/model_management_scripts/mlruns/0/90c24f696af748cb84d07f750e1897fc/artifacts
+end_time: 1734339999177
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 90c24f696af748cb84d07f750e1897fc
+run_name: wistful-pug-114
+run_uuid: 90c24f696af748cb84d07f750e1897fc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1734339829909
+status: 3
+tags: []
+user_id: Quavooo
