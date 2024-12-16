@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Quavooo/Documents/crypto_price_prediction/model_management_scripts/mlruns/0/7a21ae22190245348db324f7911ee56a/artifacts
+end_time: 1734339827051
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7a21ae22190245348db324f7911ee56a
+run_name: lyrical-squid-339
+run_uuid: 7a21ae22190245348db324f7911ee56a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1734339825988
+status: 3
+tags: []
+user_id: Quavooo
