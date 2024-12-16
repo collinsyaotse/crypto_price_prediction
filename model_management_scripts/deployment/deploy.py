@@ -1,18 +1,17 @@
-import mlflow
-import mlflow.sklearn
+import pickle
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import numpy as np
-from typing import List
 
 # FastAPI app initialization
 app = FastAPI()
 
-# Load the model from MLflow
-logged_model = 'runs:/90c24f696af748cb84d07f750e1897fc/best_model'
+# Path to the model file
+model_path = r"C:\Users\Quavooo\Documents\crypto_price_prediction\model_management_scripts\mlruns\models\BestModel\model.pkl"
 
-# Load the model at the start of the FastAPI app
-model = mlflow.sklearn.load_model(logged_model)
+# Load the model from the pickle file at the start of the FastAPI app
+with open(model_path, 'rb') as model_file:
+    model = pickle.load(model_file)
 
 # Define the input data schema using Pydantic
 class PredictionInput(BaseModel):
@@ -42,6 +41,11 @@ def predict(input_data: PredictionInput):
         return PredictionOutput(prediction=float(prediction[0]))
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Prediction failed: {str(e)}")
+
+# Add a simple root path to avoid the 404 error
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to the Crypto Price Prediction API!"}
 
 # Run the FastAPI app with Uvicorn
 if __name__ == "__main__":
