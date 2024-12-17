@@ -7,7 +7,7 @@ This project aims to develop a machine learning model capable of predicting the 
 
 Data
 
-The dataset used for training and testing the model will be sourced from kaggle. The dataset will include historical data for Bitcoin, encompassing features like:
+The dataset used for training and testing the model was sourced from kaggle "mianbilal12/bitcoin-historical-data". The dataset will include historical data for Bitcoin, encompassing features like:
 
 Open Price: The price at the beginning of the trading day.
 High Price: The highest price reached during the trading day.
@@ -44,6 +44,7 @@ Mean Squared Error (MSE)
 Root Mean Squared Error (RMSE)
 Mean Absolute Error (MAE)
 R-squared
+
 Backtesting:
 Evaluate the model's performance on historical data to assess its predictive accuracy.
 
@@ -51,10 +52,9 @@ Evaluate the model's performance on historical data to assess its predictive acc
 Deployment
 
 Model Serialization:
-Save the trained model for future use.
-Deployment Platform:
-Deployed model as an API with FastAPI and pushed to production with Heroku for real-time predictions.
+Saved the trained model for future use as a pickle file in the directory "model_management_scripts\mlruns\models\BestModel\model.pkl"
 
+Deployment Platform:
 API Integration:
 Created an API to expose the model's predictions to other applications or services.
 
