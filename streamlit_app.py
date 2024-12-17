@@ -1,25 +1,45 @@
 import streamlit as st
 import numpy as np
-import pickle  # For loading the trained model
+import requests  # For downloading the model
+import pickle  # For loading the model
 
-# 1. Function to load the pretrained model
-def load_trained_model(model_path):
+# 1. Function to load the pretrained model from GitHub
+def load_trained_model(model_url, model_filename="BestModel.pkl"):
     """
-    Load the pretrained model from a file using pickle.
+    Load the pretrained model from a GitHub repository using the raw URL.
     Args:
-        model_path (str): Path to the saved model file.
+        model_url (str): URL to the raw model file in the GitHub repository.
+        model_filename (str): Local filename to save the model as.
     Returns:
         model: The loaded trained model.
     """
-    with open(model_path, 'rb') as file:
-        model = pickle.load(file)
-    return model
+    # Convert the GitHub URL to raw URL for file download
+    raw_url = model_url.replace("github.com", "raw.githubusercontent.com").replace("/blob/", "/")
+    
+    # Download the model file
+    response = requests.get(raw_url)
+    
+    if response.status_code == 200:
+        # Save the model file locally
+        with open(model_filename, 'wb') as file:
+            file.write(response.content)
+        
+        # Load the model from the saved file
+        with open(model_filename, 'rb') as file:
+            model = pickle.load(file)
+        
+        return model
+    else:
+        raise Exception(f"Error downloading the model from {raw_url}. HTTP status code: {response.status_code}")
+
 
 # 2. Streamlit Interface
 def streamlit_interface():
+    # GitHub URL to the model file
+    model_url = "https://github.com/collinsyaotse/crypto_price_prediction/blob/main/model_management_scripts/mlruns/models/BestModel/model.pkl"
+    
     # Load the trained model
-    model_path = "model_management_scripts/mlruns/models/BestModel" 
-    model = load_trained_model(model_path)
+    model = load_trained_model(model_url)
 
     # Streamlit App Layout
     st.set_page_config(page_title="Bitcoin Price Prediction", layout="wide", initial_sidebar_state="expanded")
@@ -90,6 +110,7 @@ def streamlit_interface():
 
             # Display the predicted adjusted close price with improved styling
             st.markdown(f'<p class="prediction-result">Predicted Adjusted Close for Next Day: ${predicted_adj_close[0]:.2f}</p>', unsafe_allow_html=True)
+
 
 # Run the Streamlit interface
 if __name__ == "__main__":
