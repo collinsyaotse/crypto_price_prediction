@@ -18,7 +18,7 @@ def load_trained_model(model_path):
 # 2. Streamlit Interface
 def streamlit_interface():
     # Load the trained model
-    model_path = r"model_management_scripts\mlruns\models\BestModel\model.pkl" 
+    model_path = "model_management_scripts/mlruns/models/BestModel" 
     model = load_trained_model(model_path)
 
     # Streamlit App Layout
