@@ -59,7 +59,7 @@ API Integration:
 Created an API to expose the model's predictions to other applications or services.
 
 Streamlit deployment:
-Model was deployed to streamlit. Visit "https://cryptopriceprediction-capstone.streamlit.app/" to interact with model
+Model was deployed to streamlit. Visit "https://bitcoin-prediction-dep.streamlit.app/" to interact with model
 
 Future Work
 
