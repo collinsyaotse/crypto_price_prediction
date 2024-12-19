@@ -29,4 +29,4 @@ The trained model is downloaded from GitHub and used to make predictions.
 
 To run this app locally, follow these steps:
 
-1. Visit https://cryptopriceprediction-capstone.streamlit.app/ and interact with app
+1. Visit https://bitcoin-prediction-dep.streamlit.app/) and interact with app
